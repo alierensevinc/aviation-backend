@@ -119,7 +119,7 @@ export async function POST(req: Request) {
       },
     });
   } catch (unknownError) {
-    const error = unknownError as any;
+    const error = unknownError as { status?: number; message?: string };
     console.error("Hata:", error);
 
     let statusCode = 500;
