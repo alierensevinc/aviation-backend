@@ -116,6 +116,9 @@ export async function POST(req: Request) {
         Connection: "keep-alive",
         "Transfer-Encoding": "chunked",
         "x-context-count": limitedHistory.length.toString(),
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT",
+        "Access-Control-Allow-Headers": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-app-secret",
       },
     });
   } catch (unknownError) {
@@ -149,4 +152,15 @@ export async function POST(req: Request) {
       { status: statusCode },
     );
   }
+}
+
+export function OPTIONS() {
+  return new Response(null, {
+    status: 204,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT",
+      "Access-Control-Allow-Headers": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-app-secret",
+    },
+  });
 }
