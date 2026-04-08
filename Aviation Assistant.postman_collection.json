@@ -7,6 +7,293 @@
   },
   "item": [
     {
+      "name": "api/chat with context",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "x-app-secret",
+            "value": "<X_APP_SECRET>",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"message\": \"Anladım, o zaman İzmit'ten Sabiha Gökçen'i (SAW) tercih etmek çok daha mantıklı. Peki SAW'dan bilet bakarken Türk Hava Yolları'nın kendi adıyla iç hat uçuşları bulunuyor mu, yoksa sadece Pegasus veya AJet ile mi uçmam gerekiyor?\",\n  \"history\": [\n    {\n      \"role\": \"user\",\n      \"parts\": [{ \"text\": \"İzmit içinde gidebileceğim veya bana en yakın olan havalimanı hangisi?\" }]\n    },\n    {\n      \"role\": \"model\",\n      \"parts\": [{ \"text\": \"Merhaba, ben SkyGuide TR, Türkiye havacılığı konusunda uzmanlaşmış bir yapay zeka asistanıyım...\\n(Kocaeli ve çevre havalimanlarını anlattığı kısım)\" }]\n    },\n    {\n      \"role\": \"user\",\n      \"parts\": [{ \"text\": \"Peki ben Sabiha Gökçen'e mi daha kısa sürede ulaşırım İstanbul Havalimanına mı ?\" }]\n    },\n    {\n      \"role\": \"model\",\n      \"parts\": [{ \"text\": \"İzmit'ten Sabiha Gökçen Uluslararası Havalimanı'na (SAW) ve İstanbul Havalimanı'na (IST) ulaşım süreleri, trafiğin yoğunluğuna ve tercih ettiğiniz ulaşım yöntemine göre değişiklik gösterebilir. Ancak genel bir değerlendirme yapacak olursak:\\n\\n*   **Sabiha Gökçen Uluslararası Havalimanı (SAW)**: İzmit'e coğrafi olarak daha yakındır. İstanbul'un Anadolu Yakası'nda yer alır. Bu nedenle, İzmit'ten SAW'a ulaşım genellikle **daha kısa sürmektedir**. Ortalama olarak, trafik durumuna bağlı olarak bu süre **1 saat ile 1.5 saat** arasında değişebilir.\\n\\n*   **İstanbul Havalimanı (IST)**: İstanbul'un Avrupa Yakası'nda yer alır. İzmit'ten TEM otoyolu üzerinden ulaşım mümkündür. Ancak, mesafenin daha uzun olması ve İstanbul'un şehir içi trafiği nedeniyle SAW'a göre **daha uzun sürebilir**. Ortalama olarak, trafik durumuna bağlı olarak bu süre **1.5 saat ile 2.5 saat** veya daha fazla olabilir.\\n\\n**Özetle, İzmit'ten seyahat edeceğiniz durumlarda, genellikle Sabiha Gökçen Uluslararası Havalimanı'na (SAW) daha kısa sürede ulaşım sağlamanız mümkündür.**\\n\\nSeyahatinizden önce güncel trafik durumunu kontrol etmeniz ve ulaşım planınızı buna göre yapmanız önerilir.\" }]\n    }\n  ]\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://aviation-backend-rho.vercel.app/api/chat",
+          "protocol": "https",
+          "host": ["aviation-backend-rho", "vercel", "app"],
+          "path": ["api", "chat"]
+        }
+      },
+      "response": [
+        {
+          "name": "1",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "x-app-secret",
+                "value": "<X_APP_SECRET>",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"İzmit'te havalimanı var mı ?\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://aviation-backend-rho.vercel.app/api/chat",
+              "protocol": "https",
+              "host": ["aviation-backend-rho", "vercel", "app"],
+              "path": ["api", "chat"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "cache-control",
+              "value": "public, max-age=0, must-revalidate"
+            },
+            {
+              "key": "content-encoding",
+              "value": "br"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json"
+            },
+            {
+              "key": "date",
+              "value": "Wed, 08 Apr 2026 11:01:44 GMT"
+            },
+            {
+              "key": "server",
+              "value": "Vercel"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=63072000; includeSubDomains; preload"
+            },
+            {
+              "key": "x-matched-path",
+              "value": "/api/chat"
+            },
+            {
+              "key": "x-vercel-cache",
+              "value": "MISS"
+            },
+            {
+              "key": "x-vercel-enable-rewrite-caching",
+              "value": "1"
+            },
+            {
+              "key": "x-vercel-id",
+              "value": "fra1::iad1::dp8th-1775646101440-7dedaab47fd0"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"answer\": \"Merhaba, ben SkyGuide TR, Türkiye havacılığı konusunda uzmanlaşmış bir yapay zeka asistanıyım.\\n\\nİzmit'te direkt olarak yolcu taşımacılığına hizmet veren büyük bir ticari havalimanı bulunmamaktadır. Ancak, bölgeye en yakın ve en sık kullanılan havalimanları şunlardır:\\n\\n*   **Cengiz Topel Havalimanı (KOCAELİ)**: İzmit'e en yakın havalimanıdır. Genellikle askeri amaçlı kullanılsa da, belirli dönemlerde ve sivil uçuşlar için de aktif olabilmektedir. Ancak, düzenli ticari uçuşları sınırlıdır.\\n*   **Sabiha Gökçen Uluslararası Havalimanı (SAW)**: İstanbul'un Anadolu Yakası'nda yer alan bu havalimanı, İzmit'e yaklaşık 1 saatlik mesafede bulunur ve geniş bir uçuş ağına sahiptir.\\n*   **İstanbul Havalimanı (IST)**: İstanbul'un Avrupa Yakası'nda bulunan bu büyük havalimanı da alternatif bir seçenek olup, İzmit'e ulaşım süresi trafiğe bağlı olarak değişmektedir.\\n\\nBu havalimanlarından hangisinin sizin için daha uygun olacağını, seyahat edeceğiniz destinasyona ve seyahat tarihlerine göre uçuş programlarını kontrol ederek belirleyebilirsiniz.\\n\\nSize Türkiye havacılığı ile ilgili başka bir konuda yardımcı olabilir miyim?\",\n    \"contextCount\": 2\n}"
+        },
+        {
+          "name": "2",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "x-app-secret",
+                "value": "<X_APP_SECRET>",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"Peki ben Sabiha Gökçen'e mi daha kısa sürede ulaşırım İstanbul Havalimanına mı ?\",\n  \"history\": [\n    {\n      \"role\": \"user\",\n      \"parts\": [{ \"text\": \"İzmit içinde gidebileceğim veya bana en yakın olan havalimanı hangisi?\" }]\n    },\n    {\n      \"role\": \"model\",\n      \"parts\": [{ \"text\": \"Merhaba, ben SkyGuide TR, Türkiye havacılığı konusunda uzmanlaşmış bir yapay zeka asistanıyım.\\n\\nİzmit'te direkt olarak yolcu taşımacılığına hizmet veren büyük bir ticari havalimanı bulunmamaktadır. Ancak, bölgeye en yakın ve en sık kullanılan havalimanları şunlardır:\\n\\n*   **Cengiz Topel Havalimanı (KOCAELİ)**: İzmit'e en yakın havalimanıdır. Genellikle askeri amaçlı kullanılsa da, belirli dönemlerde ve sivil uçuşlar için de aktif olabilmektedir. Ancak, düzenli ticari uçuşları sınırlıdır.\\n*   **Sabiha Gökçen Uluslararası Havalimanı (SAW)**: İstanbul'un Anadolu Yakası'nda yer alan bu havalimanı, İzmit'e yaklaşık 1 saatlik mesafede bulunur ve geniş bir uçuş ağına sahiptir.\\n*   **İstanbul Havalimanı (IST)**: İstanbul'un Avrupa Yakası'nda bulunan bu büyük havalimanı da alternatif bir seçenek olup, İzmit'e ulaşım süresi trafiğe bağlı olarak değişmektedir.\\n\\nBu havalimanlarından hangisinin sizin için daha uygun olacağını, seyahat edeceğiniz destinasyona ve seyahat tarihlerine göre uçuş programlarını kontrol ederek belirleyebilirsiniz.\\n\\nSize Türkiye havacılığı ile ilgili başka bir konuda yardımcı olabilir miyim?\" }]\n    }\n  ]\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://aviation-backend-rho.vercel.app/api/chat",
+              "protocol": "https",
+              "host": ["aviation-backend-rho", "vercel", "app"],
+              "path": ["api", "chat"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "cache-control",
+              "value": "public, max-age=0, must-revalidate"
+            },
+            {
+              "key": "content-encoding",
+              "value": "br"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json"
+            },
+            {
+              "key": "date",
+              "value": "Wed, 08 Apr 2026 11:03:48 GMT"
+            },
+            {
+              "key": "server",
+              "value": "Vercel"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=63072000; includeSubDomains; preload"
+            },
+            {
+              "key": "x-matched-path",
+              "value": "/api/chat"
+            },
+            {
+              "key": "x-vercel-cache",
+              "value": "MISS"
+            },
+            {
+              "key": "x-vercel-enable-rewrite-caching",
+              "value": "1"
+            },
+            {
+              "key": "x-vercel-id",
+              "value": "fra1::iad1::h6hzx-1775646226627-10e36e11a580"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"answer\": \"İzmit'ten Sabiha Gökçen Uluslararası Havalimanı'na (SAW) ve İstanbul Havalimanı'na (IST) ulaşım süreleri, trafiğin yoğunluğuna ve tercih ettiğiniz ulaşım yöntemine göre değişiklik gösterebilir. Ancak genel bir değerlendirme yapacak olursak:\\n\\n*   **Sabiha Gökçen Uluslararası Havalimanı (SAW)**: İzmit'e coğrafi olarak daha yakındır. İstanbul'un Anadolu Yakası'nda yer alır. Bu nedenle, İzmit'ten SAW'a ulaşım genellikle **daha kısa sürmektedir**. Ortalama olarak, trafik durumuna bağlı olarak bu süre **1 saat ile 1.5 saat** arasında değişebilir.\\n\\n*   **İstanbul Havalimanı (IST)**: İstanbul'un Avrupa Yakası'nda yer alır. İzmit'ten TEM otoyolu üzerinden ulaşım mümkündür. Ancak, mesafenin daha uzun olması ve İstanbul'un şehir içi trafiği nedeniyle SAW'a göre **daha uzun sürebilir**. Ortalama olarak, trafik durumuna bağlı olarak bu süre **1.5 saat ile 2.5 saat** veya daha fazla olabilir.\\n\\n**Özetle, İzmit'ten seyahat edeceğiniz durumlarda, genellikle Sabiha Gökçen Uluslararası Havalimanı'na (SAW) daha kısa sürede ulaşım sağlamanız mümkündür.**\\n\\nSeyahatinizden önce güncel trafik durumunu kontrol etmeniz ve ulaşım planınızı buna göre yapmanız önerilir.\",\n    \"contextCount\": 4\n}"
+        },
+        {
+          "name": "3",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "x-app-secret",
+                "value": "<X_APP_SECRET>",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"Anladım, o zaman İzmit'ten Sabiha Gökçen'i (SAW) tercih etmek çok daha mantıklı. Peki SAW'dan bilet bakarken Türk Hava Yolları'nın kendi adıyla iç hat uçuşları bulunuyor mu, yoksa sadece Pegasus veya AJet ile mi uçmam gerekiyor?\",\n  \"history\": [\n    {\n      \"role\": \"user\",\n      \"parts\": [{ \"text\": \"İzmit içinde gidebileceğim veya bana en yakın olan havalimanı hangisi?\" }]\n    },\n    {\n      \"role\": \"model\",\n      \"parts\": [{ \"text\": \"Merhaba, ben SkyGuide TR, Türkiye havacılığı konusunda uzmanlaşmış bir yapay zeka asistanıyım...\\n(Kocaeli ve çevre havalimanlarını anlattığı kısım)\" }]\n    },\n    {\n      \"role\": \"user\",\n      \"parts\": [{ \"text\": \"Peki ben Sabiha Gökçen'e mi daha kısa sürede ulaşırım İstanbul Havalimanına mı ?\" }]\n    },\n    {\n      \"role\": \"model\",\n      \"parts\": [{ \"text\": \"İzmit'ten Sabiha Gökçen Uluslararası Havalimanı'na (SAW) ve İstanbul Havalimanı'na (IST) ulaşım süreleri, trafiğin yoğunluğuna ve tercih ettiğiniz ulaşım yöntemine göre değişiklik gösterebilir. Ancak genel bir değerlendirme yapacak olursak:\\n\\n*   **Sabiha Gökçen Uluslararası Havalimanı (SAW)**: İzmit'e coğrafi olarak daha yakındır. İstanbul'un Anadolu Yakası'nda yer alır. Bu nedenle, İzmit'ten SAW'a ulaşım genellikle **daha kısa sürmektedir**. Ortalama olarak, trafik durumuna bağlı olarak bu süre **1 saat ile 1.5 saat** arasında değişebilir.\\n\\n*   **İstanbul Havalimanı (IST)**: İstanbul'un Avrupa Yakası'nda yer alır. İzmit'ten TEM otoyolu üzerinden ulaşım mümkündür. Ancak, mesafenin daha uzun olması ve İstanbul'un şehir içi trafiği nedeniyle SAW'a göre **daha uzun sürebilir**. Ortalama olarak, trafik durumuna bağlı olarak bu süre **1.5 saat ile 2.5 saat** veya daha fazla olabilir.\\n\\n**Özetle, İzmit'ten seyahat edeceğiniz durumlarda, genellikle Sabiha Gökçen Uluslararası Havalimanı'na (SAW) daha kısa sürede ulaşım sağlamanız mümkündür.**\\n\\nSeyahatinizden önce güncel trafik durumunu kontrol etmeniz ve ulaşım planınızı buna göre yapmanız önerilir.\" }]\n    }\n  ]\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://aviation-backend-rho.vercel.app/api/chat",
+              "protocol": "https",
+              "host": ["aviation-backend-rho", "vercel", "app"],
+              "path": ["api", "chat"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "cache-control",
+              "value": "public, max-age=0, must-revalidate"
+            },
+            {
+              "key": "content-encoding",
+              "value": "br"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json"
+            },
+            {
+              "key": "date",
+              "value": "Wed, 08 Apr 2026 11:05:11 GMT"
+            },
+            {
+              "key": "server",
+              "value": "Vercel"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=63072000; includeSubDomains; preload"
+            },
+            {
+              "key": "x-matched-path",
+              "value": "/api/chat"
+            },
+            {
+              "key": "x-vercel-cache",
+              "value": "MISS"
+            },
+            {
+              "key": "x-vercel-enable-rewrite-caching",
+              "value": "1"
+            },
+            {
+              "key": "x-vercel-id",
+              "value": "fra1::iad1::p8ttb-1775646304675-26401c9c5803"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"answer\": \"Merhaba, ben SkyGuide TR, Türkiye havacılığı konusunda uzmanlaşmış bir yapay zeka asistanıyım.\\n\\nSabiha Gökçen Uluslararası Havalimanı (SAW) hem Türk Hava Yolları'na (THY) ait şirketler hem de diğer havayolları için önemli bir merkezdir.\\n\\n*   **Türk Hava Yolları (THY)**, ana üssü İstanbul Havalimanı (IST) olmasına rağmen, Sabiha Gökçen Havalimanı'ndan (SAW) da **kendi markası altında iç hat uçuşları gerçekleştirmektedir**. THY'nin SAW kalkışlı ve varışlı birçok rotası bulunmaktadır.\\n\\n*   **Pegasus Havayolları**'nın Sabiha Gökçen'de önemli bir operasyonu vardır ve bu havalimanından çok sayıda iç ve dış hat uçuşu sunmaktadır.\\n\\n*   **AJet (eski adıyla AnadoluJet)** de Sabiha Gökçen Havalimanı'nı kullanarak iç hatlarda hizmet vermektedir.\\n\\nDolayısıyla, Sabiha Gökçen'den (SAW) bilet bakarken sadece Pegasus veya AJet ile değil, **Türk Hava Yolları'nın kendi uçuşlarıyla da** karşılaşacaksınız. Bilet arama motorlarında veya havayollarının kendi web sitelerinde \\\"Türk Hava Yolları\\\" olarak arama yaparak bu uçuşları bulabilirsiniz.\",\n    \"contextCount\": 6\n}"
+        }
+      ]
+    },
+    {
       "name": "api/chat",
       "request": {
         "method": "POST",
@@ -24,7 +311,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"prompt\": \"İstanbul Havalimanı (IST) hakkında teknik bilgi verebilir misin?\"\n}",
+          "raw": "{\n  \"message\": \"Türkiyedeki en eski havalimanı nerededir ?\",\n  \"history\": []\n}\n",
           "options": {
             "raw": {
               "language": "json"
@@ -38,7 +325,223 @@
           "path": ["api", "chat"]
         }
       },
-      "response": []
+      "response": [
+        {
+          "name": "single response",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "x-app-secret",
+                "value": "<X_APP_SECRET>",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"Türkiyedeki en eski havalimanı nerededir ?\",\n  \"history\": []\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://aviation-backend-rho.vercel.app/api/chat",
+              "protocol": "https",
+              "host": ["aviation-backend-rho", "vercel", "app"],
+              "path": ["api", "chat"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "",
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "cache-control",
+              "value": "public, max-age=0, must-revalidate"
+            },
+            {
+              "key": "content-encoding",
+              "value": "br"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json"
+            },
+            {
+              "key": "date",
+              "value": "Wed, 08 Apr 2026 11:06:27 GMT"
+            },
+            {
+              "key": "server",
+              "value": "Vercel"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=63072000; includeSubDomains; preload"
+            },
+            {
+              "key": "x-matched-path",
+              "value": "/api/chat"
+            },
+            {
+              "key": "x-vercel-cache",
+              "value": "MISS"
+            },
+            {
+              "key": "x-vercel-enable-rewrite-caching",
+              "value": "1"
+            },
+            {
+              "key": "x-vercel-id",
+              "value": "fra1::iad1::8vjdh-1775646385537-11b8711d26b1"
+            }
+          ],
+          "cookie": [
+            {
+              "expires": "Invalid Date",
+              "domain": "",
+              "path": ""
+            }
+          ],
+          "body": "{\n    \"answer\": \"Türkiye'deki en eski havalimanı **Yesilyurt Havaalanı**'dır. Bu havalimanı, Malatya'da bulunmaktadır.\",\n    \"contextCount\": 2\n}"
+        }
+      ]
+    },
+    {
+      "name": "api/chat irrevelant",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "x-app-secret",
+            "value": "<X_APP_SECRET>",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"message\": \"En iyi lahmacunu nerede yerim ?\",\n  \"history\": []\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://aviation-backend-rho.vercel.app/api/chat",
+          "protocol": "https",
+          "host": ["aviation-backend-rho", "vercel", "app"],
+          "path": ["api", "chat"]
+        }
+      },
+      "response": [
+        {
+          "name": "irrvelant response",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "x-app-secret",
+                "value": "<X_APP_SECRET>",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"En iyi lahmacunu nerede yerim ?\",\n  \"history\": []\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://aviation-backend-rho.vercel.app/api/chat",
+              "protocol": "https",
+              "host": ["aviation-backend-rho", "vercel", "app"],
+              "path": ["api", "chat"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "",
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "cache-control",
+              "value": "public, max-age=0, must-revalidate"
+            },
+            {
+              "key": "content-encoding",
+              "value": "br"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json"
+            },
+            {
+              "key": "date",
+              "value": "Wed, 08 Apr 2026 11:07:22 GMT"
+            },
+            {
+              "key": "server",
+              "value": "Vercel"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=63072000; includeSubDomains; preload"
+            },
+            {
+              "key": "x-matched-path",
+              "value": "/api/chat"
+            },
+            {
+              "key": "x-vercel-cache",
+              "value": "MISS"
+            },
+            {
+              "key": "x-vercel-enable-rewrite-caching",
+              "value": "1"
+            },
+            {
+              "key": "x-vercel-id",
+              "value": "fra1::iad1::dt2ds-1775646440482-acba69bf29a4"
+            }
+          ],
+          "cookie": [
+            {
+              "expires": "Invalid Date",
+              "domain": "",
+              "path": ""
+            }
+          ],
+          "body": "{\n    \"answer\": \"Ben sadece Türkiye havacılığı üzerine uzmanlaşmış bir asistanım. Size bu konuda nasıl yardımcı olabilirim?\",\n    \"contextCount\": 2\n}"
+        }
+      ]
     }
   ]
 }

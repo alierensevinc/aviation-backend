@@ -1,5 +1,5 @@
 import { prompt as systemInstructionPrompt } from "@/app/constants/prompt";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenerativeAI, type Content } from "@google/generative-ai";
 import { NextResponse } from "next/server";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
@@ -8,6 +8,11 @@ const model = genAI.getGenerativeModel({
   systemInstruction: systemInstructionPrompt,
 });
 
+interface ChatRequest {
+  message: string;
+  history?: Content[];
+}
+
 export async function POST(req: Request) {
   try {
     const clientSecret = req.headers.get("x-app-secret");
@@ -15,13 +20,14 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Yetkisiz erişim" }, { status: 401 });
     }
 
-    const { history, message } = await req.json();
+    const body = (await req.json()) as Partial<ChatRequest>;
+    const { history, message } = body;
 
     if (!message || typeof message !== "string" || message.trim() === "") {
       return NextResponse.json({ error: "Geçersiz istek" }, { status: 400 });
     }
 
-    const limitedHistory =
+    const limitedHistory: Content[] =
       history && Array.isArray(history) ? history.slice(-5) : [];
 
     const chat = model.startChat({

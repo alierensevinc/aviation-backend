@@ -41,11 +41,16 @@ Kullanıcıdan gelen soruları Gemini modeline gönderir ve yanıtı döndürür
 | `x-app-secret`   | `<X_APP_SECRET>`   | .env dosyasındaki `APP_INTERNAL_SECRET` ile aynı olmalıdır. (Canlı ortam için Postman dosyasındaki örnek veya yetkili Secret kullanılmalı) |
 
 #### Body (JSON)
+İsteklerde temel olarak göndermek istediğiniz metin `message` alanında yer alır. Modülün sohbet geçmişini hatırlaması için opsiyonel olarak `history` nesnesi gönderilebilir.
+
 ```json
 {
-  "prompt": "İstanbul Havalimanı (IST) hakkında teknik bilgi verebilir misin?"
+  "message": "Türkiyedeki en eski havalimanı nerededir ?",
+  "history": [] 
 }
 ```
+
+> **Not:** `history` özelliği Sliding Window (Son 5 mesaj) kurallarına tabidir. `history` objesinin formatı Gemini API'na uyumlu şekilde `[{ role: "user" | "model", parts: [{ text: "..." }] }]` olmalıdır. Postman koleksiyonundaki **api/chat with context** isteğiyle örneği inceleyebilirsiniz.
 
 #### Örnek İstek (cURL)
 
@@ -54,20 +59,23 @@ curl -X POST "https://aviation-backend-rho.vercel.app/api/chat" \
      -H "Content-Type: application/json" \
      -H "x-app-secret: <SENIN_SECRET_ANAHTARIN>" \
      -d '{
-           "prompt": "İstanbul Havalimanı (IST) hakkında teknik bilgi verebilir misin?"
+           "message": "Türkiyedeki en eski havalimanı nerededir ?",
+           "history": []
          }'
 ```
 
 #### Örnek Başarılı Yanıt (200 OK)
+API, cevabın yanı sıra sliding window bağlamında tutulan geçmiş log sayısını `contextCount` ile döner.
 ```json
 {
-  "answer": "İstanbul Havalimanı (IST), Türkiye'nin en büyük havalimanıdır..."
+  "answer": "Türkiye'deki en eski havalimanı **Yesilyurt Havaalanı**'dır. Bu havalimanı, Malatya'da bulunmaktadır.",
+  "contextCount": 2
 }
 ```
 
 #### Örnek Hata Yanıtları
 - **401 Unauthorized:** Eğer `x-app-secret` eksikse veya hatalıysa.
-- **400 Bad Request:** Eğer `prompt` gönderilmemişse veya boş string gönderilmişse.
+- **400 Bad Request:** Eğer `message` gönderilmemişse veya boş string gönderilmişse.
 - **500 Internal Server Error:** Yapay zeka servisinden kaynaklanan geçici hatalarda.
 
 ## Projeyi Çalıştırma
