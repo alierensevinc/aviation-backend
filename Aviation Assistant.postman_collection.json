@@ -1,0 +1,44 @@
+{
+  "info": {
+    "_postman_id": "e976b20d-94b4-434b-aeec-24b6f92821db",
+    "name": "Aviation Assistant",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "8993262"
+  },
+  "item": [
+    {
+      "name": "api/chat",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "x-app-secret",
+            "value": "<X_APP_SECRET>",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"prompt\": \"İstanbul Havalimanı (IST) hakkında teknik bilgi verebilir misin?\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://aviation-backend-rho.vercel.app/api/chat",
+          "protocol": "https",
+          "host": ["aviation-backend-rho", "vercel", "app"],
+          "path": ["api", "chat"]
+        }
+      },
+      "response": []
+    }
+  ]
+}
