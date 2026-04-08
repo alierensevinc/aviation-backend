@@ -1,11 +1,11 @@
-import { prompt } from "@/app/constants/prompt";
+import { prompt as systemInstructionPrompt } from "@/app/constants/prompt";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextResponse } from "next/server";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 const model = genAI.getGenerativeModel({
   model: "gemini-2.5-flash-lite",
-  systemInstruction: prompt,
+  systemInstruction: systemInstructionPrompt,
 });
 
 export async function POST(req: Request) {
@@ -15,16 +15,29 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Yetkisiz erişim" }, { status: 401 });
     }
 
-    const { prompt } = await req.json();
+    const { history, message } = await req.json();
 
-    if (!prompt || typeof prompt !== "string" || prompt.trim() === "") {
+    if (!message || typeof message !== "string" || message.trim() === "") {
       return NextResponse.json({ error: "Geçersiz istek" }, { status: 400 });
     }
 
-    const result = await model.generateContent(prompt);
+    const limitedHistory =
+      history && Array.isArray(history) ? history.slice(-5) : [];
+
+    const chat = model.startChat({
+      history: limitedHistory,
+      generationConfig: {
+        maxOutputTokens: 1000,
+      },
+    });
+
+    const result = await chat.sendMessage(message);
     const text = result.response.text();
 
-    return NextResponse.json({ answer: text });
+    return NextResponse.json({
+      answer: text,
+      contextCount: limitedHistory.length,
+    });
   } catch (error) {
     console.error("Hata:", error);
     return NextResponse.json(
