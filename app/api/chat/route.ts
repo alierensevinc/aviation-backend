@@ -5,6 +5,8 @@ import { z } from "zod";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 
+export const runtime = "edge";
+
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 const model = genAI.getGenerativeModel({
   model: "gemini-2.5-flash-lite",
