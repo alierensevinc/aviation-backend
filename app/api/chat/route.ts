@@ -12,7 +12,10 @@ const model = genAI.getGenerativeModel({
 });
 
 let ratelimit: Ratelimit | undefined;
-if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
+if (
+  process.env.UPSTASH_REDIS_REST_URL &&
+  process.env.UPSTASH_REDIS_REST_TOKEN
+) {
   ratelimit = new Ratelimit({
     redis: Redis.fromEnv(),
     limiter: Ratelimit.slidingWindow(5, "1 m"),
@@ -33,22 +36,27 @@ const chatRequestSchema = z.object({
 });
 
 export async function POST(req: Request) {
+  const { signal } = req;
+
   try {
     if (ratelimit) {
       const ip = req.headers.get("x-forwarded-for") ?? "127.0.0.1";
       const { success, limit, remaining, reset } = await ratelimit.limit(ip);
-      
+
       if (!success) {
         return NextResponse.json(
-          { error: "Dakikadaki istek limitinizi aştınız. Lütfen biraz bekleyip tekrar deneyin." },
-          { 
+          {
+            error:
+              "Dakikadaki istek limitinizi aştınız. Lütfen biraz bekleyip tekrar deneyin.",
+          },
+          {
             status: 429,
             headers: {
               "X-RateLimit-Limit": limit.toString(),
               "X-RateLimit-Remaining": remaining.toString(),
-              "X-RateLimit-Reset": reset.toString()
-            }
-          }
+              "X-RateLimit-Reset": reset.toString(),
+            },
+          },
         );
       }
     }
@@ -97,6 +105,11 @@ export async function POST(req: Request) {
         const encoder = new TextEncoder();
         try {
           for await (const chunk of result.stream) {
+            if (signal.aborted) {
+              console.log("İstemci bağlantıyı kesti. AI akışı durduruluyor.");
+              break;
+            }
+
             const chunkText = chunk.text();
             controller.enqueue(encoder.encode(chunkText));
           }
@@ -106,6 +119,9 @@ export async function POST(req: Request) {
         } finally {
           controller.close();
         }
+      },
+      cancel() {
+        console.log("Stream sunucu tarafında iptal edildi.");
       },
     });
 
@@ -118,7 +134,8 @@ export async function POST(req: Request) {
         "x-context-count": limitedHistory.length.toString(),
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT",
-        "Access-Control-Allow-Headers": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-app-secret",
+        "Access-Control-Allow-Headers":
+          "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-app-secret",
       },
     });
   } catch (unknownError) {
@@ -160,7 +177,8 @@ export function OPTIONS() {
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT",
-      "Access-Control-Allow-Headers": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-app-secret",
+      "Access-Control-Allow-Headers":
+        "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-app-secret",
     },
   });
 }
